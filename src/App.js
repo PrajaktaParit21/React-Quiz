@@ -8,6 +8,7 @@ import StartScreen from "./StartScreen";
 import Question from "./Question";
 import Progress from "./Progress";
 import Footer from "./Footer";
+import FinishScreen from "./FinishScreen"
 
 const initialState = {
   questions: [],
@@ -62,6 +63,11 @@ function reducer(state, action) {
         revealAns: true,
         questionIndex: state.questionIndex - 1,
       };
+    case "finish":
+      return {
+        ...state,
+        status: "finish"
+      }
     default:
       throw new Error("Unknown action type");
   }
@@ -110,6 +116,7 @@ function App() {
             />
           </>
         )}
+        {status === "finish" && <FinishScreen score={score} totalPoints={totalPoints}/>}
       </Main>
     </div>
   );
