@@ -1,14 +1,14 @@
 export default function Progress({
   totalQuestions,
-  questionIndex,
   score,
   totalPoints,
+  questionsAnswered
 }) {
   return (
     <header className="progress">
-        <progress max={totalQuestions} value={questionIndex+1}/>
+        <progress max={totalQuestions} value={questionsAnswered}/>
       <p>
-        Question <strog>{questionIndex+1}</strog>/{totalQuestions}
+        Question <strong>{questionsAnswered}</strong>/{totalQuestions}
       </p>
       <p>
         Total Points {score}/{totalPoints}

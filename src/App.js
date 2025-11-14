@@ -68,7 +68,7 @@ function reducer(state, action) {
 }
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { questions, status, questionIndex, revealAns, score, totalPoints } =
+  const { questions, status, questionIndex, revealAns, score, totalPoints,questionsAnswered } =
     state;
   useEffect(() => {
     async function fetchQuestions() {
@@ -95,7 +95,7 @@ function App() {
         )}
         {status === "active" && (
           <>
-            <Progress totalQuestions={questions.length} questionIndex={questionIndex} score={score} totalPoints={totalPoints} />
+            <Progress totalQuestions={questions.length} questionsAnswered={questionsAnswered} score={score} totalPoints={totalPoints} />
             <Question
               questionIndex={questionIndex}
               questionObj={questions[questionIndex]}
