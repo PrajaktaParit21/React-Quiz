@@ -106,6 +106,7 @@ function App() {
               questionIndex={questionIndex}
               dispatch={dispatch}
               revealAns={revealAns}
+              totalQuestions={questions.length}
             />
           </>
         )}

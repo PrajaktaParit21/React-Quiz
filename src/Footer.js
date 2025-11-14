@@ -1,6 +1,11 @@
-export default function Footer({questionIndex,dispatch,revealAns}) {
+export default function Footer({
+  questionIndex,
+  dispatch,
+  revealAns,
+  totalQuestions,
+}) {
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
       {questionIndex > 0 && (
         <button
           className="btn"
@@ -11,7 +16,9 @@ export default function Footer({questionIndex,dispatch,revealAns}) {
           Previous
         </button>
       )}
-      {revealAns && (
+      {revealAns? questionIndex + 1 === totalQuestions ? (
+        <button className="btn" onClick={()=>{dispatch({type:'finish'})}}>Finish</button>
+      ) : (
         <button
           className="btn"
           onClick={() => {
@@ -20,7 +27,7 @@ export default function Footer({questionIndex,dispatch,revealAns}) {
         >
           Next
         </button>
-      )}
+      ): null}
     </div>
   );
 }
