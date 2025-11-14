@@ -8,7 +8,7 @@ import StartScreen from "./StartScreen";
 import Question from "./Question";
 import Progress from "./Progress";
 import Footer from "./Footer";
-import FinishScreen from "./FinishScreen"
+import FinishScreen from "./FinishScreen";
 
 const initialState = {
   questions: [],
@@ -18,6 +18,7 @@ const initialState = {
   score: 0,
   totalPoints: 0,
   questionsAnswered: 0,
+  highScore: 0,
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -66,16 +67,33 @@ function reducer(state, action) {
     case "finish":
       return {
         ...state,
-        status: "finish"
-      }
+        status: "finish",
+        highScore: Math.max(state.highScore, state.score),
+      };
+    case "reset":
+      return {
+        ...initialState,
+        questions: state.questions,
+        status: "active",
+        totalPoints: state.totalPoints,
+        highScore: state.highScore,
+      };
     default:
       throw new Error("Unknown action type");
   }
 }
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { questions, status, questionIndex, revealAns, score, totalPoints,questionsAnswered } =
-    state;
+  const {
+    questions,
+    status,
+    questionIndex,
+    revealAns,
+    score,
+    totalPoints,
+    questionsAnswered,
+    highScore,
+  } = state;
   useEffect(() => {
     async function fetchQuestions() {
       const res = await fetch("http://localhost:9000/questions");
@@ -101,7 +119,12 @@ function App() {
         )}
         {status === "active" && (
           <>
-            <Progress totalQuestions={questions.length} questionsAnswered={questionsAnswered} score={score} totalPoints={totalPoints} />
+            <Progress
+              totalQuestions={questions.length}
+              questionsAnswered={questionsAnswered}
+              score={score}
+              totalPoints={totalPoints}
+            />
             <Question
               questionIndex={questionIndex}
               questionObj={questions[questionIndex]}
@@ -116,7 +139,14 @@ function App() {
             />
           </>
         )}
-        {status === "finish" && <FinishScreen score={score} totalPoints={totalPoints}/>}
+        {status === "finish" && (
+          <FinishScreen
+            score={score}
+            totalPoints={totalPoints}
+            highScore={highScore}
+            dispatch={dispatch}
+          />
+        )}
       </Main>
     </div>
   );
