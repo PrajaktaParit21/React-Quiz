@@ -1,3 +1,5 @@
+import Timer from "./Timer";
+
 export default function Footer({
   questionIndex,
   dispatch,
@@ -7,6 +9,7 @@ export default function Footer({
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       {questionIndex > 0 && (
+      <div style={{ display: "flex", gap: "30px" }}>
         <button
           className="btn"
           onClick={() => {
@@ -28,6 +31,9 @@ export default function Footer({
           Next
         </button>
       ): null}
+      </div>
+
+      <Timer seconds={totalQuestions * 10} setStatusFinish={dispatch} />
     </div>
   );
 }

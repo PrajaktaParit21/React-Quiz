@@ -25,7 +25,7 @@ html {
 body {
   min-height: 100vh;
   color: var(--color-light);
-  background-color: var(--color-darkest);
+  background-color: #23272a;
   padding: 3.2rem;
   font-size: 1.8rem;
 }
@@ -309,3 +309,65 @@ progress {
   transform: scale(1.02);
   transition: transform 0.08s ease;
 }
+
+.timer {
+  position: relative;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: "Inter", "Poppins", sans-serif;
+  color: #e5e5e5;
+  background: #2728282e;
+  border-radius: 12px;
+  overflow: visible; /* important */
+}
+
+.timer {
+  display: flex;
+  color: white;
+  height: 56px;
+  width: 300px;
+  justify-content: center;
+  /* For animation */
+  --border-angle: 0turn;
+
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+
+  border: solid 2px transparent;
+  border-radius: 2em;
+
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+
+  background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+
+  background-position: center center;
+
+  animation: bg-spin 3s linear infinite;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
