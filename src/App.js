@@ -9,6 +9,7 @@ import Question from "./Question";
 import Progress from "./Progress";
 import Footer from "./Footer";
 import FinishScreen from "./FinishScreen";
+import Timer from "./Timer";
 
 const initialState = {
   questions: [],
@@ -131,6 +132,7 @@ function App() {
               dispatch={dispatch}
               revealAns={revealAns}
             />
+            <Timer seconds={questions.length * 10} setStatusFinish={dispatch}/>
             <Footer
               questionIndex={questionIndex}
               dispatch={dispatch}
