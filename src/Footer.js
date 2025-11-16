@@ -8,29 +8,37 @@ export default function Footer({
 }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
-      {questionIndex > 0 && (
       <div style={{ display: "flex", gap: "30px" }}>
         <button
-          className="btn"
+          className="btn footer-btn"
+          disabled={questionIndex === 0}
           onClick={() => {
             dispatch({ type: "prevQuestion" });
           }}
         >
-          Previous
+          ❮
         </button>
-      )}
-      {revealAns? questionIndex + 1 === totalQuestions ? (
-        <button className="btn" onClick={()=>{dispatch({type:'finish'})}}>Finish</button>
-      ) : (
-        <button
-          className="btn"
-          onClick={() => {
-            dispatch({ type: "nextQuestion" });
-          }}
-        >
-          Next
-        </button>
-      ): null}
+        {questionIndex + 1 === totalQuestions ? (
+          <button
+            className="btn footer-btn"
+            disabled={!revealAns}
+            onClick={() => {
+              dispatch({ type: "finish" });
+            }}
+          >
+            Finish
+          </button>
+        ) : (
+          <button
+            className="btn footer-btn"
+            disabled={!revealAns}
+            onClick={() => {
+              dispatch({ type: "nextQuestion" });
+            }}
+          >
+            ❯
+          </button>
+        )}
       </div>
 
       <Timer seconds={totalQuestions * 10} setStatusFinish={dispatch} />

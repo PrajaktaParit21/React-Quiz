@@ -29,7 +29,9 @@ body {
   padding: 3.2rem;
   font-size: 1.8rem;
 }
-
+.main {
+  width: 66rem;
+}
 .app {
   display: flex;
   flex-direction: column;
@@ -371,3 +373,8 @@ progress {
   initial-value: 0turn;
 }
 
+.footer-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
