@@ -7,7 +7,7 @@ export default function FinishScreen({
   const percentage = ((score / totalPoints) * 100).toFixed(0);
   return (
     <div>
-      <div className="finish-card">
+      <div className="card">
         <h2>
           Quiz Complete!
           <span style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎉</span>

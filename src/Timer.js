@@ -18,8 +18,6 @@ export default function Timer({ setStatusFinish, seconds }) {
   const { sec, min } = state;
   useEffect(() => {
     const id = setInterval(() => {
-      console.log("in interval");
-
       if (min === 0 && sec === 1) {
         setStatusFinish({ type: "finish" });
       } else dispatch({ type: "dec", payload: 1 });

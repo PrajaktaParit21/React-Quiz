@@ -18,7 +18,7 @@ const initialState = {
   score: 0,
   totalPoints: 0,
   questionsAnswered: 0,
-  highScore: 0,
+  highScore: +localStorage.getItem("highscore"),
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -65,10 +65,12 @@ function reducer(state, action) {
         questionIndex: state.questionIndex - 1,
       };
     case "finish":
+      const newHighScore = Math.max(state.highScore, state.score)
+      localStorage.setItem("highscore",newHighScore)
       return {
         ...state,
         status: "finish",
-        highScore: Math.max(state.highScore, state.score),
+        highScore: newHighScore,
       };
     case "reset":
       return {
@@ -82,6 +84,7 @@ function reducer(state, action) {
       throw new Error("Unknown action type");
   }
 }
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {

@@ -1,6 +1,6 @@
 export default function StartScreen({ questionCount, dispatch }) {
   return (
-    <div className="start">
+    <div className="start card">
       <span style={{ fontSize: "5.5rem", animation: "pulse 1.8s infinite" }}>
         ✨
       </span>
