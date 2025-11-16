@@ -9,6 +9,8 @@ import Question from "./Question";
 import Progress from "./Progress";
 import Footer from "./Footer";
 import FinishScreen from "./FinishScreen";
+import questionsData from "./data"
+
 
 const initialState = {
   questions: [],
@@ -99,14 +101,16 @@ function App() {
   } = state;
   useEffect(() => {
     async function fetchQuestions() {
-      const res = await fetch("http://localhost:9000/questions");
+      // const res = await fetch("http://localhost:9000/questions");
 
-      try {
-        const data = await res.json();
-        dispatch({ type: "dataReceived", payLoad: data });
-      } catch (error) {
-        dispatch({ type: "dataFailed" });
-      }
+      // try {
+      //   const data = await res.json();
+      //   dispatch({ type: "dataReceived", payLoad: data.questions });
+      // } catch (error) {
+      //   dispatch({ type: "dataFailed" });
+      // }
+      dispatch({ type: "dataReceived", payLoad: questionsData });
+
     }
     fetchQuestions();
   }, []);

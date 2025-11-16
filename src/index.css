@@ -21,7 +21,10 @@ html {
   font-size: 50%;
   font-family: "Inter", sans-serif;
 }
-
+main{
+  width:90%;
+  max-width: 66rem
+}
 body {
   min-height: 100vh;
   color: var(--color-light);
@@ -29,9 +32,7 @@ body {
   padding: 3.2rem;
   font-size: 1.8rem;
 }
-.main {
-  width: 66rem;
-}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -459,3 +460,74 @@ progress {
   transform: translateY(0);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
+
+
+/* responsive code */
+/* ========== HEADER RESPONSIVE STYLES ========== */
+
+/* Base header improvements */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;            /* allows image + title to wrap on small screens */
+  justify-content: center;    /* centered on all sizes */
+  text-align: center;
+}
+
+.app-header img {
+  max-width: 100%;
+}
+
+
+
+/* Tablets */
+@media (max-width: 780px) {
+  html{
+
+     font-size: 42%;
+    }
+  .app-header h1 {
+    font-size: 5rem;
+  }
+
+  .app-header img {
+    width: 12rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  
+
+  .app-header img {
+    width: 10rem;
+  }
+
+  .app-header h1 {
+    font-size: 5rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 460px) {
+  .app-header img {
+    width: 9rem;
+  }
+
+  .app-header h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 340px) {
+  .app-header img {
+    width: 7rem;
+  }
+
+  .app-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
